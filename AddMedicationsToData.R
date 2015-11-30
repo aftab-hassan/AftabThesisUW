@@ -1,6 +1,7 @@
 #Purpose
-#Appends Medication Information to the sql_chf_ROR.R script which extracts
+#Appends Medication Information to the output of sql_create_chfror.R script which extracts
 #socio-demographic and other clinical information
+#So, run sql_create_chfror.R first and then run this script
 
 #dsn - data source name
 library("RODBC");
