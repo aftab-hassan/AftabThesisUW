@@ -20,9 +20,6 @@
 # > #Summary/Report
 # > cat(paste0("Tests passed == ",passed, "/",nrow(df)," ,Tests failed == ",failed,"/",nrow(df),"\n"))
 # Tests passed == 74009/74009 ,Tests failed == 0/74009
-# >
-# > #close channel
-# > close(channel)
 
 #reading in data
 dfmedications = read.csv('MedicationsToConsider.csv')
