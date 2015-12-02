@@ -24,14 +24,20 @@ public class algo4
 		
 		/* Populating input and printing them */
 		System.out.println("Printing input");
-		myPareto.PopulateSampleInput();
+		//myPareto.PopulateSampleInput();
+		myPareto.PopulateSampleInputFromFile();
 		myPareto.Print(myPareto.options);
 		System.out.println("Number of inputs read=="+myPareto.options.size());
 		
 		/* Printing the Pareto-Optimal solutions */
+		final long startTime = System.currentTimeMillis();
 		ArrayList<Option> ParetoSolutions = myPareto.FindParetoOptimalSolutions();
+		final long endTime = System.currentTimeMillis();
+	
 		System.out.println("Printing ParetoSolutions : ");
 		myPareto.Print(ParetoSolutions);
+		
+		System.out.println("Total execution time: " + (endTime - startTime) + " milliseconds" );
 	}
 }
 
@@ -44,24 +50,24 @@ class Pareto
 		options = new ArrayList<Option>();
 	}
 	
-//	void PopulateSampleInput()
-//	{
-//		Option option1 = new Option(25, 30, 34);
-//		Option option2 = new Option(15, 31, 21);
-//		Option option3 = new Option(10, 40, 21);
-//		Option option4 = new Option(30, 30, 34);
-//		Option option5 = new Option(25, 30, 10);
-//		Option option6 = new Option(9, 20, 15);
-//		
-//		options.add(option1);
-//		options.add(option2);
-//		options.add(option3);
-//		options.add(option4);
-//		options.add(option5);
-//		options.add(option6);
-//	}
-	
 	void PopulateSampleInput()
+	{
+		Option option1 = new Option(25, 30, 34);
+		Option option2 = new Option(15, 31, 21);
+		Option option3 = new Option(10, 40, 21);
+		Option option4 = new Option(30, 30, 34);
+		Option option5 = new Option(25, 30, 10);
+		Option option6 = new Option(9, 20, 15);
+		
+		options.add(option1);
+		options.add(option2);
+		options.add(option3);
+		options.add(option4);
+		options.add(option5);
+		options.add(option6);
+	}
+	
+	void PopulateSampleInputFromFile()
 	{
 		try
 		{
