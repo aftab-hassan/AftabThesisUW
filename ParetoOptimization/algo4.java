@@ -1,5 +1,10 @@
 package ParetoOptimizationAlgorithms;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,6 +26,7 @@ public class algo4
 		System.out.println("Printing input");
 		myPareto.PopulateSampleInput();
 		myPareto.Print(myPareto.options);
+		System.out.println("Number of inputs read=="+myPareto.options.size());
 		
 		/* Printing the Pareto-Optimal solutions */
 		ArrayList<Option> ParetoSolutions = myPareto.FindParetoOptimalSolutions();
@@ -38,21 +44,46 @@ class Pareto
 		options = new ArrayList<Option>();
 	}
 	
+//	void PopulateSampleInput()
+//	{
+//		Option option1 = new Option(25, 30, 34);
+//		Option option2 = new Option(15, 31, 21);
+//		Option option3 = new Option(10, 40, 21);
+//		Option option4 = new Option(30, 30, 34);
+//		Option option5 = new Option(25, 30, 10);
+//		Option option6 = new Option(9, 20, 15);
+//		
+//		options.add(option1);
+//		options.add(option2);
+//		options.add(option3);
+//		options.add(option4);
+//		options.add(option5);
+//		options.add(option6);
+//	}
+	
 	void PopulateSampleInput()
 	{
-		Option option1 = new Option(25, 30, 34);
-		Option option2 = new Option(15, 31, 21);
-		Option option3 = new Option(10, 40, 21);
-		Option option4 = new Option(30, 30, 34);
-		Option option5 = new Option(25, 30, 10);
-		Option option6 = new Option(9, 20, 15);
-	
-		options.add(option1);
-		options.add(option2);
-		options.add(option3);
-		options.add(option4);
-		options.add(option5);
-		options.add(option6);
+		try
+		{
+			String pwd = Paths.get(".").toAbsolutePath().normalize().toString();
+			String inputpath = pwd + "/src/ParetoOptimizationAlgorithms/myinput.txt";
+			
+			FileInputStream fstream = new FileInputStream(inputpath);
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			while ((strLine = br.readLine()) != null)
+			{
+				String[] tokens = strLine.split(" ");
+				Option myoption = new Option(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[2]));//process record , etc
+				options.add(myoption);
+			}
+			in.close();
+		}
+		catch (Exception e)
+		{
+			System.err.println("Error: " + e.getMessage());
+		}
 	}
 		
 	void Print(ArrayList<Option> al)
